@@ -13,7 +13,8 @@
   "containerEnv": {
     "FLASH_MODE" : "ssh",
     "HOST_HOSTNAME" : "host.docker.internal",
-    "HOST_USER" : "${env:USER}"
+    "HOST_USER" : "${env:USER}",
+    "HOST_WD" : "${workspaceFolder}"
   },
   "customizations": {
     "vscode": {
