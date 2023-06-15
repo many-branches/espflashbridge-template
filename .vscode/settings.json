@@ -1,3 +1,5 @@
 {
+    "json.schemaDownload.enable": true,
     "rust-analyzer.checkOnSave.allTargets": false,
+    "dev.containers.dockerPath" :   "${workspaceFolder}/.devcontainer/docker.sh"
 }

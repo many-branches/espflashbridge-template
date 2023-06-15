@@ -10,10 +10,11 @@ init()
 
 async def connect_and_forward(args):
     flash_bridge_port = int(os.getenv("FLASH_BRIDGE_PORT", 8000))
+    flash_bridge_host = int(os.getenv("FLASH_BRIDGE_HOST", "localhost"))
     
     path = "espflash/ls" if len(args) and args[0] else "espflash"
     
-    async with websockets.connect(f'ws://localhost:{flash_bridge_port}/{path}') as websocket:
+    async with websockets.connect(f'ws://{flash_bridge_host}:{flash_bridge_port}/{path}') as websocket:
         if len(args) and args[0] == "ls":
             pass
         else:

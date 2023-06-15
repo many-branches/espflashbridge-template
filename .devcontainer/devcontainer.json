@@ -46,5 +46,5 @@
   ],
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/esp/{{ crate_name }},type=bind,consistency=cached",
   "workspaceFolder": "/home/esp/{{ crate_name }}",
-  "postCreateCommand": "FLASH_BRIDGE_PORT=33033 ../.flashbridge/server.sh"
+  "postCreateCommand": "FLASH_BRIDGE_PORT=33033 .flashbridge/server.sh"
 }
