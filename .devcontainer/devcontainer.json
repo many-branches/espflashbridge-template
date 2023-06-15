@@ -41,8 +41,10 @@
   },
   "forwardPorts": [
     8000,
-    3333
+    3333,
+    33033
   ],
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/esp/{{ crate_name }},type=bind,consistency=cached",
-  "workspaceFolder": "/home/esp/{{ crate_name }}"
+  "workspaceFolder": "/home/esp/{{ crate_name }}",
+  "postCreateCommand": "FLASH_BRIDGE_PORT=33033 ../.flashbridge/server.sh"
 }
