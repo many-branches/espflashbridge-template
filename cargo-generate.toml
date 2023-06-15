@@ -53,4 +53,5 @@ ignore = [
     ".dockerignore",
     "diagram.json",
     "wokwi.toml",
+    ".flashbridge/"
 ]

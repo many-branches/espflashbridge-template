@@ -14,8 +14,11 @@ ARG GITHUB_TOKEN
 # Install dependencies
 RUN apt-get update \
     && apt-get install -y git curl llvm-dev libclang-dev clang unzip \
-    libusb-1.0-0 libssl-dev libudev-dev pkg-config libpython2.7 \
+    libusb-1.0-0 libssl-dev libudev-dev pkg-config libpython2.7 sudo \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts
+
+# Set up sudo
+RUN echo "${CONTAINER_USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Set users
 RUN adduser --disabled-password --gecos "" ${CONTAINER_USER}
@@ -50,7 +53,7 @@ RUN if [ -n "${GITHUB_TOKEN}" ]; then export GITHUB_TOKEN=${GITHUB_TOKEN}; fi  \
     --export-file /home/${CONTAINER_USER}/export-esp.sh
 
 # Set default toolchain
-RUN rustup default {{ toolchain }}
+RUN rustup default esp
 
 # Activate ESP environment
 RUN echo "source /home/${CONTAINER_USER}/export-esp.sh" >> ~/.bashrc
