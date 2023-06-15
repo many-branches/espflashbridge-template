@@ -7,7 +7,7 @@ A minimalist template for use with [cargo-generate] to create `no_std` applicati
 To generate a project using this template:
 
 ```bash
-cargo generate -a esp-rs/esp-template
+cargo generate -a many-branches/espflashbridge-template
 ```
 
 After running the command, there will be a few prompts:
@@ -33,6 +33,23 @@ For a more detailed explanation about the template, see [Understanding esp-templ
 [web flash]: https://github.com/bjoernQ/esp-web-flash-server
 [Understanding esp-template]: https://esp-rs.github.io/book/writing-your-own-application/no-std-applications/understanding-esp-template.html
 [The Rust on ESP Book]: https://esp-rs.github.io/book/
+
+## `flashbridge`
+This fork of espflash-template provides additional utilities for flashing your device from a container. These utilities were originally added with the intent of facilitating containerized development on Apple Silicon hosts as serial port forwarding is not yet feasible on these machines.
+
+## `ssh`
+Utilities are provided to flash by running `ssh -t` to connect to the host and run a command. These utilities require remote access to be enabled on the host. This template makes no provisions to facilitate enabling or securing said access.
+
+If you are working out of VsCode devcontainers, you can simply run `cargo run` as before. 
+
+### Platform specific guidelines
+| Platform | Guidelines |
+|-----------------|-----------------|
+| macos | Ensure you've granted full disk access: https://superuser.com/questions/1615072/getting-an-operation-not-permitted-error-when-running-commands-after-to-sshing . You may also need to add `Remote Management` permissions. |
+
+
+## `serve-flashbridge`
+On the host, start the server with `./scripts/serve-flashbridge.sh`. In the container, to flash using the server, run `FLASH_MODE=server ./scripts/flashbridge.sh <path-to-binary> <serial-port>`. 
 
 
 ## License
